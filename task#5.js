@@ -46,3 +46,10 @@ for (let s = 30; s <= 80; s++) {
 }
 
 console.log(sum2);
+
+
+for (let b = 100; b <= 200; b++) {
+    if (b % 3 === 0){
+        console.log(b);
+    }
+}
