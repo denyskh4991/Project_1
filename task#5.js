@@ -23,3 +23,9 @@ for (let q=1; q<=15; q++) {
     }
 }
 console.log(sum);
+
+let multiple = 1;
+for (let w=15; w<=35; w++) {
+    multiple *= w
+}
+console.log(multiple);
