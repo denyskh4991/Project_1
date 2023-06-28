@@ -7,3 +7,7 @@ for (let i=10; i<=20; i++) {
     }
 }
 console.log(str);
+
+for (let m=10; m<=20; m++) {
+    console.log(Math.pow(m, 2));
+}
