@@ -29,3 +29,11 @@ for (let w=15; w<=35; w++) {
     multiple *= w
 }
 console.log(multiple);
+
+let sum = 0;
+let middle = 0;
+for (let w=1; w<=500; w++) {
+    sum += w;
+    middle = sum/w;
+}
+console.log(middle);
