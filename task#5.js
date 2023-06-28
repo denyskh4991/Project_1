@@ -63,3 +63,4 @@ if (!isNaN(number)){
         }
     }
 }
+else {number = prompt('Enter your number')}
