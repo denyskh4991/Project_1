@@ -30,11 +30,11 @@ for (let w=15; w<=35; w++) {
 }
 console.log(multiple);
 
-let sum = 0;
+let sum1 = 0;
 let middle = 0;
-for (let w=1; w<=500; w++) {
-    sum += w;
-    middle = sum/w;
+for (let x=1; x<=500; x++) {
+    sum1 += x;
+    middle = sum1/x;
 }
 console.log(middle);
 
