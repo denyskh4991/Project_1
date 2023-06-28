@@ -15,3 +15,11 @@ for (let m=10; m<=20; m++) {
 for (let k=1; k<=10; k++) {
     console.log(k*7);
 }
+
+let sum = 0;
+for (let q=1; q<=15; q++) {
+    if (Number.isInteger(q)) {
+        sum += q
+    }
+}
+console.log(sum);
