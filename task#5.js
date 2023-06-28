@@ -53,3 +53,13 @@ for (let b = 100; b <= 200; b++) {
         console.log(b);
     }
 }
+
+
+let number = prompt('Enter your number');
+if (!isNaN(number)){
+    for (n=0; n<=number; n++){
+        if (number % n === 0){
+            console.log (n)
+        }
+    }
+}
