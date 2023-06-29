@@ -55,6 +55,8 @@ for (let b = 100; b <= 200; b++) {
 }
 
 
+
+
 let number = prompt('Enter your number');
 if (!isNaN(number)){
     for (n=0; n<=number; n++){
@@ -74,3 +76,13 @@ for  (h=0; h<=number; h++) {
     }
 }
 console.log (count);
+
+let sum3 = 0;
+for  (a=0; a<=number; a++) {
+    if (a % 2 ===0){
+        if  (number % a === 0) {
+            sum3 += a;
+        }
+    }
+}
+console.log (sum3);
