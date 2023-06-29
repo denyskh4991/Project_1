@@ -64,3 +64,13 @@ if (!isNaN(number)){
     }
 }
 else {number = prompt('Enter your number')}
+
+let count = 0;
+for  (h=0; h<=number; h++) {
+    if (h % 2 ===0){
+        if  (number % h === 0) {
+            count++;
+        }
+    }
+}
+console.log (count);
