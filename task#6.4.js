@@ -1,4 +1,4 @@
-let N = parseInt(prompt("Введіть ціле число:"));
+let N = parseInt(prompt("Enter your number:"));
 
 let isPrime = true;
 
