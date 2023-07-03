@@ -1,20 +1,33 @@
 function askForNumbers() {
-    let numbers = [];
+    let number1 = null;
+    let number2 = null;
+    let number3 = null;
 
-    for (let i = 1; i <= 3; i++) {
-        let input = null;
-        while (input === null || isNaN(input)) {
-            input = prompt(`Введіть число ${i}:`);
-            if (input === null) {
-                alert('You refused to enter a number');
-                return;
-            }
+    while (number1 === null || isNaN(number1)) {
+        number1 = parseFloat(prompt("Enter the first number:"));
+        if (number1 === null) {
+            console.log("You refused to enter the number");
+            return;
         }
-        const number = parseFloat(input);
-        numbers.push(number);
     }
 
-    console.log(numbers);
+    while (number2 === null || isNaN(number2)) {
+        number2 = parseFloat(prompt("Enter the second number:"));
+        if (number2 === null) {
+            console.log("You refused to enter the number");
+            return;
+        }
+    }
+
+    while (number3 === null || isNaN(number3)) {
+        number3 = parseFloat(prompt("Enter the third number:"));
+        if (number3 === null) {
+            console.log("You refused to enter the number");
+            return;
+        }
+    }
+
+    console.log(number1, number2, number3);
 }
 
 askForNumbers();
