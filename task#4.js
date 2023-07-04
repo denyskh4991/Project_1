@@ -3,16 +3,23 @@ let birthday = prompt('Input date of your birthday');
 if (!birthday){
     alert ("Too bad you didn\'t want to enter your birthday");
 }
-else if (confirm(birthday)){
+
+else if (birthday){
     alert("You were born in "+ birthday +"");
 }
+
+else {
+    alert ("Too bad you didn\'t want to enter your birthday");
+}
+
 
 let plOfBirth = prompt('Input place of your birthday');
 
 if (!plOfBirth){
     alert ("Too bad you didn\'t want to enter your place of birth");
 }
-else if (confirm(plOfBirth)) {
+
+else if (plOfBirth) {
     switch (plOfBirth) {
         case 'Kiev':
             alert('You live in capital of Ukraine');
@@ -28,12 +35,18 @@ else if (confirm(plOfBirth)) {
     }
 }
 
+else {
+    alert ("Too bad you didn\'t want to enter your place of birth");
+}
+
+
 let sport = prompt('Input your favourite sport');
 
 if (!sport) {
     alert ("Too bad you didn\'t want to enter your favourite sport");
 }
-else if (confirm(sport)) {
+
+else if (sport) {
     switch (sport) {
         case 'boxing':
             alert('Cool! Do you want to be Mike Tyson?');
@@ -49,9 +62,15 @@ else if (confirm(sport)) {
     }
 }
 
-if(!birthday && !plOfBirth && !sport){
-    alert("Your age: undefined\nYou live in undefined\nYou\'re doing undefined");
+else {
+    alert ("Too bad you didn\'t want to enter your favourite sport");
 }
+
+
+if(!birthday || !plOfBirth || !sport){
+    alert("Your age:\nYou live in\nYou\'re doing");
+}
+
 else {
     alert("Your age: "+ birthday +"\nYou live in "+ plOfBirth +"\nYou\'re doing "+ sport +"");
 }
