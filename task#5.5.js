@@ -1,7 +1,7 @@
-let multiple = 1;
+let multiple = 1n;
 
-for (let i = 15; i <= 35; i++) {
+for (let i = 15n; i <= 35; i++) {
     multiple *= i
 }
 
-console.log(multiple);
+console.log(multiple.toString());
