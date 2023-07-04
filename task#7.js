@@ -1,33 +1,53 @@
 function askForNumbers() {
-    let number1 = null;
-    let number2 = null;
-    let number3 = null;
+    let a = null;
+    let b = null;
+    let c = null;
 
-    while (number1 === null || isNaN(number1)) {
-        number1 = parseFloat(prompt("Enter the first number:"));
-        if (number1 === null) {
-            console.log("You refused to enter the number");
+    while (a === null || isNaN(a)) {
+        a = parseFloat(prompt("Enter a"));
+        if (a === null) {
+            console.log("I'm sorry to hear that. Hope to see you again");
             return;
         }
     }
 
-    while (number2 === null || isNaN(number2)) {
-        number2 = parseFloat(prompt("Enter the second number:"));
-        if (number2 === null) {
-            console.log("You refused to enter the number");
+    while (b === null || isNaN(b)) {
+        b = parseFloat(prompt("Enter b"));
+        if (b === null) {
+            console.log("I'm sorry to hear that. Hope to see you again");
             return;
         }
     }
 
-    while (number3 === null || isNaN(number3)) {
-        number3 = parseFloat(prompt("Enter the third number:"));
-        if (number3 === null) {
-            console.log("You refused to enter the number");
+    while (c === null || isNaN(c)) {
+        c = parseFloat(prompt("Enter c"));
+        if (c === null) {
+            console.log("I'm sorry to hear that. Hope to see you again");
             return;
         }
     }
 
-    console.log(number1, number2, number3);
+    console.log(a, b, c);
+    quadraticEquation(a, b, c);
 }
 
 askForNumbers();
+
+function quadraticEquation (a, b, c) {
+    let D = b * b - 4 * a * c;
+    if (D<0){
+        console.log("The equation has no solutions");
+        return;
+    }
+    if (D==0) {
+        let x1 = -b / (2 * a);
+        console.log("The only root of the equation ",x1);
+        return;
+    }
+    if (D>0) {
+        let x2 = (-b + Math.sqrt(D))/(2 * a);
+        let x3 = (-b - Math.sqrt(D))/(2 * a);
+        console.log("The roots of the equation: ",x2, x3);
+        return;
+    }
+}
