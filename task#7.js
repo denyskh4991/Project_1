@@ -4,13 +4,25 @@ function askForNumbers() {
     let b = null;
     let c = null;
 
+    const inputA = prompt("Будемо знаходити рішення квадратного рівняння виду: ax^2 + bx + c = 0\nВведіть a");
+
+    if (inputA === null){
+        alert('Шкода. Сподіваюсь ще побачитись');
+        return;
+    }
+
+    else if (!isNaN(a)){
+        a = parseFloat(inputA)
+    }
+
     while (a === null || isNaN(a)) {
-        const inputA = prompt("Будемо знаходити рішення квадратного рівняння виду: ax^2 + bx + c = 0\nВведіть a");
-        if (inputA === null) {
+        const inputA1 = prompt("Введіть a")
+        if (inputA1 === null) {
             alert('Шкода. Сподіваюсь ще побачитись');
-            return;
+            return ;
         }
-        a = parseFloat(inputA);
+
+        a = parseFloat(inputA1);
     }
 
     while (b === null || isNaN(b)) {
@@ -19,6 +31,7 @@ function askForNumbers() {
             alert('Шкода. Сподіваюсь ще побачитись');
             return;
         }
+
         b = parseFloat(inputB);
     }
 
@@ -28,6 +41,7 @@ function askForNumbers() {
             alert('Шкода. Сподіваюсь ще побачитись');
             return;
         }
+
         c = parseFloat(inputC);
     }
 
@@ -37,20 +51,25 @@ function askForNumbers() {
 askForNumbers();
 
 function quadraticEquation (a, b, c) {
+
     let D = b * b - 4 * a * c;
+
     if (a==0){
         alert("Рівняння не має рішень");
         return;
     }
+
     if (D<0){
         alert("Рівняння не має рішень");
         return;
     }
+
     if (D==0) {
         let x1 = -b / (2 * a);
         alert("Єдиний корень рівняння: "+x1+"");
         return;
     }
+
     if (D>0) {
         let x2 = (-b + Math.sqrt(D))/(2 * a);
         let x3 = (-b - Math.sqrt(D))/(2 * a);
