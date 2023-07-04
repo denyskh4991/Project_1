@@ -1,18 +1,18 @@
-var N = parseInt(prompt("Enter your number:"));
+var N2 = parseInt(prompt("Enter your number:"));
 let isPowerOfThree = false;
 
-if (N <= 0) {
+if (N2 <= 0) {
     isPowerOfThree = false;
 } else {
-    while (N !== 1) {
-        if (N % 3 !== 0) {
+    while (N2 !== 1) {
+        if (N2 % 3 !== 0) {
             isPowerOfThree = false;
             break;
         }
-        N /= 3;
+        N2 /= 3;
     }
 
-    if (N === 1) {
+    if (N2 === 1) {
         isPowerOfThree = true;
     }
 }

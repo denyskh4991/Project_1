@@ -1,12 +1,12 @@
-let N = parseInt(prompt("Enter your number:"));
+let N1 = parseInt(prompt("Enter your number:"));
 
 let isPrime = true;
 
-if (N < 2) {
+if (N1 < 2) {
     isPrime = false;
 } else {
-    for (let i = 2; i < N; i++) {
-        if (N % i === 0) {
+    for (let i = 2; i < N1; i++) {
+        if (N1 % i === 0) {
             isPrime = false;
             break;
         }
@@ -14,7 +14,7 @@ if (N < 2) {
 }
 
 if (isPrime) {
-    console.log(N + " is a prime number");
+    console.log(N1 + " is a prime number");
 } else {
-    console.log(N + " isn't a prime number");
+    console.log(N1 + " isn't a prime number");
 }

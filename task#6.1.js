@@ -1,11 +1,11 @@
-let str = '';
+let str1 = '';
 
 for (let i = 20; i <= 30; i+=0.5) {
-    str += i;
+    str1 += i;
 
     if (i !== 30) {
-        str += ' ';
+        str1 += ' ';
     }
 }
 
-console.log(str);
+console.log(str1);
