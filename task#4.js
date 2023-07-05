@@ -1,78 +1,65 @@
-let birthday = prompt('Input date of your birthday');
+let result = "";
 
-if (!birthday){
-    alert ("Too bad you didn\'t want to enter your birthday");
-}
+let birthday = prompt('Введи, будь ласка, свій рік народження');
 
-else if (birthday){
-    alert("You were born in "+ birthday +"");
-}
-
-else {
-    alert ("Too bad you didn\'t want to enter your birthday");
-}
-
-
-let plOfBirth = prompt('Input place of your birthday');
-
-if (!plOfBirth){
-    alert ("Too bad you didn\'t want to enter your place of birth");
-}
-
-else if (plOfBirth) {
-    switch (plOfBirth) {
-        case 'Kiev':
-            alert('You live in capital of Ukraine');
-            break;
-        case 'London':
-            alert('You live in capital of UK');
-            break;
-        case 'Washington':
-            alert('You live in capital of the USA')
-            break;
-        default:
-            alert("You live in city (town) "+ plOfBirth +"");
+if (birthday !== null) {
+    if (birthday !== "" && !isNaN(birthday)) {
+        result += "Ваш вік - " + birthday + "\n";
     }
 }
-
 else {
-    alert ("Too bad you didn\'t want to enter your place of birth");
+    alert("Шкода, що Ви не захотіли ввести свій рік народження");
 }
 
 
-let sport = prompt('Input your favourite sport');
 
-if (!sport) {
-    alert ("Too bad you didn\'t want to enter your favourite sport");
-}
+let plOfBirth = prompt('В якому місті ти живеш?');
 
-else if (sport) {
-    switch (sport) {
-        case 'boxing':
-            alert('Cool! Do you want to be Mike Tyson?');
-            break;
-        case 'swimming':
-            alert('Cool! Do you want to be Michael Phelps?');
-            break;
-        case 'tennis':
-            alert('Cool! Do you want to be Roger Federer')
-            break;
-        default:
-            alert("You\'re doing "+ sport +"");
+if (plOfBirth !== null) {
+    if (plOfBirth !== "") {
+        switch (plOfBirth) {
+            case 'Київ':
+                result += 'Ти живеш у столиці України\n';
+                break;
+            case 'Лондон':
+                result += 'Ти живеш у столиці Великобританії\n';
+                break;
+            case 'Вашингтон':
+                result += 'Ти живеш у столиці США\n';
+                break;
+            default:
+                result += 'Ти живеш у місті ' + plOfBirth + '\n';
+                break;
+        }
     }
+} else {
+    alert("Шкода, що Ви не захотіли ввести місце свого проживання");
 }
 
-else {
-    alert ("Too bad you didn\'t want to enter your favourite sport");
+let sport = prompt('Який вид спорту тобі подобається більш за все?');
+
+if (sport !== null) {
+    if (sport !== "") {
+        switch (sport) {
+            case 'бокс':
+                result += 'Круто! Хочеш стати Майком Тайсоном?\n';
+                break;
+            case 'плавання':
+                result += 'Круто! Хочеш стати Майклом Фелпсом?\n';
+                break;
+            case 'теніс':
+                result += 'Круто! Хочеш стати Роджером Федерером\n';
+                break;
+            default:
+                break;
+        }
+    }
+} else {
+    alert("Шкода, що Ви не захотіли ввести улюблений вид спорту");
 }
 
-
-if(!birthday || !plOfBirth || !sport){
-    alert("Your age:\nYou live in\nYou\'re doing");
+if (result !== "") {
+    alert(result);
+} else {
+    alert("");
 }
-
-else {
-    alert("Your age: "+ birthday +"\nYou live in "+ plOfBirth +"\nYou\'re doing "+ sport +"");
-}
-
-
