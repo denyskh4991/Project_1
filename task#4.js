@@ -4,7 +4,7 @@ let birthday = prompt('Введи, будь ласка, свій рік наро
 
 if (birthday !== null) {
     if (birthday !== "" && !isNaN(birthday)) {
-        result += "Ваш вік - " + birthday + "\n";
+        result += "Твій вік: " + (2023 - parseInt(birthday)) + " років\n";
     }
 }
 else {
