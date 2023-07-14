@@ -3,41 +3,49 @@ function askForNumbers() {
     let b = null;
     let c = null;
 
+    function getUserNumber (str) {
+        let num = prompt(str);
+
+        while (num === null || num === "" || isNaN(num)) {
+            if (num === null){
+                return num;
+            }
+            num = prompt(str);
+        }
+        return +num;
+    }
+
+    function finalMessage () {
+        alert('Шкода. Сподіваюсь ще побачитись');
+    }
+
     const inputA = prompt(
         "Будемо знаходити рішення квадратного рівняння виду: ax^2 + bx + c = 0\nВведіть a"
     );
 
     if (inputA === null) {
-        return;
-    } else if (!isNaN(inputA)) {
-        a = parseFloat(inputA);
+        return finalMessage();
     }
 
-    while (a === null || isNaN(a)) {
-        const inputA1 = prompt("Введіть a");
-        if (inputA1 === null) {
-            return;
-        }
-
-        a = parseFloat(inputA1);
+    if (!isNaN(inputA) && inputA !== "") {
+        a = +inputA;
+    }
+    else {
+        a = getUserNumber("Введіть a");
     }
 
-    while (b === null || isNaN(b)) {
-        const inputB = prompt("a=" + a + "\nВведіть b");
-        if (inputB === null) {
-            return;
-        }
-
-        b = parseFloat(inputB);
+    if (a === null) {
+        return finalMessage();
     }
 
-    while (c === null || isNaN(c)) {
-        const inputC = prompt("a=" + a + ", b=" + b + "\nВведіть c");
-        if (inputC === null) {
-            return;
-        }
+    b = getUserNumber("a= "+ a +"\nВведіть b");
+    if (b === null) {
+        return finalMessage();
+    }
 
-        c = parseFloat(inputC);
+    c = getUserNumber("a=" + a + ", b=" + b + "\nВведіть c");
+    if (c === null) {
+        return finalMessage();
     }
 
     const results = quadraticEquation(a, b, c, invalidCallback);
@@ -47,9 +55,6 @@ function askForNumbers() {
 askForNumbers();
 
 function quadraticEquation(a, b, c, invalidCallback) {
-    if (a === null || b === null || c === null) {
-        return null;
-    }
 
     if (a === 0) {
         invalidCallback();
@@ -86,9 +91,9 @@ function quadraticEquation(a, b, c, invalidCallback) {
     }
 }
 
-function showTheResults(a, b, c, results) {
-    if (a === null || b === null || c === null || results === null) {
-        alert("Рівняння не має рішень");
+function showTheResults(results) {
+
+    if (results === null) {
         return;
     }
 
@@ -108,10 +113,9 @@ function showTheResults(a, b, c, results) {
         ", x2=" +
         results.x3
     );
-    return;
 }
 
 function invalidCallback() {
-    alert("Рівняння не має рішень");
+    alert("a = 0, функція не має рішень");
 }
 
