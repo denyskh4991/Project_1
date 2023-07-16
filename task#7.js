@@ -49,7 +49,7 @@ function askForNumbers() {
     }
 
     const results = quadraticEquation(a, b, c, invalidCallback);
-    showTheResults(a, b, c, results);
+    showTheResults(results);
 }
 
 askForNumbers();
@@ -79,14 +79,13 @@ function quadraticEquation(a, b, c, invalidCallback) {
     }
     else {
         const sqrtD = Math.sqrt(D);
-        const x2 = (-b + sqrtD) / (2 * a);
-        const x3 = (-b - sqrtD) / (2 * a);
+        const x1 = (-b + sqrtD) / (2 * a);
+        const x2 = (-b - sqrtD) / (2 * a);
 
         return {
             D: D,
-            x1: null,
+            x1: x1,
             x2: x2,
-            x3: x3,
         };
     }
 }
@@ -108,11 +107,7 @@ function showTheResults(results) {
     }
 
     alert(
-        "D > 0, корені рівняння: x1= " +
-        results.x2 +
-        ", x2=" +
-        results.x3
-    );
+        "D > 0, корені рівняння: x1= " + results.x1 + ", x2=" + results.x2);
 }
 
 function invalidCallback() {
