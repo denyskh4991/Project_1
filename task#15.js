@@ -1,5 +1,5 @@
 function createSumClosure() {
-    let x = 3;
+    let x = 0;
 
     function sumClosure(y) {
         x += y;
@@ -11,7 +11,7 @@ function createSumClosure() {
 
 const sumFunc = createSumClosure();
 
-console.log(sumFunc(0));
+console.log(sumFunc(3));
 console.log(sumFunc(5));
 console.log(sumFunc(20));
 
