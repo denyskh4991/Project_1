@@ -55,16 +55,16 @@ let users = [
     }
 ]
 
-let phones = users
-    .filter(user => parseFloat(user.balance.replace(/[^0-9.-]+/g,"")) > 2000)
-    .map(user => user.phone);
-
-console.log(phones);
-
+let phones = [];
 let totalBalance = users.reduce((sum, user) => {
-    let balance = parseFloat(user.balance.replace(/[^0-9.-]+/g,"").replace(/,/g, ""));
+    let balance = parseFloat(user.balance.replace(/[^0-9.-]+/g, "").replace(/,/g, ""));
+    if (balance > 2000) {
+        phones.push(user.phone);
+    }
     return sum + balance;
 }, 0);
 
 totalBalance = totalBalance.toFixed(2);
+
+console.log(phones);
 console.log(totalBalance);
