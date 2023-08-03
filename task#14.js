@@ -1,8 +1,9 @@
 function generateKey(length, characters){
+    const charactersLength = characters.length;
     let randomString = "";
     for (let i = 0; i < length; i++) {
-        let index = Math.floor(Math.random() * characters.length);
-        randomString +=characters[index];
+        let index = Math.floor(Math.random() * charactersLength);
+        randomString += characters[index];
     }
 
     return randomString;
