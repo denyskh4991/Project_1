@@ -15,7 +15,7 @@ console.log("Сума позитивних елементів: " + sum);
 console.log("Кількість позитивних елементів: " + positiveCount);
 
 
-let minNumber = Math.min.apply(null, myArray);
+let minNumber = Math.min(...myArray);
 
 console.log("Мінімальний елемент масиву: " + minNumber);
 
@@ -25,7 +25,7 @@ let idxMin = myArray.indexOf(minNumber);
 console.log("Порядковий номер мінімального елемента масиву: " + idxMin);
 
 
-let maxNumber = Math.max.apply(null, myArray);
+let maxNumber = Math.max(...myArray);
 
 console.log("Максимальний элемент масиву: " + maxNumber);
 
