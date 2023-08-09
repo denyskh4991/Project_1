@@ -21,9 +21,23 @@ class Car {
         this.plate = plate;
     }
 
-    addAnswerVariant(brand) {
-        this.brand.push(brand);
-        return brand;
+    assignOwner(owner) {
+        this.owner = owner;
+        if (this.owner.age > 18) {
+            console.log("Owner Info:");
+            this.owner.assignOwner();
+        } else {
+            console.log("Owner is not old enough.");
+        }
+    }
+
+    displayCarAndOwnerInfo() {
+        console.log(`Car: ${this.brand}, ${this.model}, ${this.year}, ${this.plate}`);
+        if (this.owner) {
+            console.log(`Name: ${this.owner.name}, Age: ${this.owner.age}`);
+        } else {
+            console.log("No owner assigned yet.");
+        }
     }
 }
 
@@ -37,4 +51,8 @@ const car = new Car(
     ['АА1234ВА', 'АА0000ВА', 'АІ0434ВН']
 );
 console.log('Car:', car);
+
+car.assignOwner(man);
+
+car.displayCarAndOwnerInfo();
 
