@@ -1,4 +1,4 @@
-class Man {
+class Person {
     constructor(name, age) {
         this.name = name;
         this.age = age;
@@ -37,9 +37,9 @@ class Car {
     }
 }
 
-const man1 = new Man('John', 17);
-const man2 = new Man('Michael', 18);
-const man3 = new Man('Bobb', 20);
+const person1 = new Person('John', 17);
+const person2 = new Person('Michael', 18);
+const person3 = new Person('Bobb', 20);
 
 const car1 = new Car('Toyota', 'Supra', 1986, 'АА1234ВА');
 const car2 = new Car('Nissan', 'Skyline', 2002, 'АА0000ВА');
@@ -49,9 +49,9 @@ console.log('Car 1:', car1);
 console.log('Car 2:', car2);
 console.log('Car 3:', car3);
 
-car1.assignOwner(man1);
-car2.assignOwner(man2);
-car3.assignOwner(man3);
+car1.assignOwner(person1);
+car2.assignOwner(person2);
+car3.assignOwner(person3);
 car1.displayCarAndOwnerInfo();
 car2.displayCarAndOwnerInfo();
 car3.displayCarAndOwnerInfo();
