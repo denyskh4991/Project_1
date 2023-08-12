@@ -1,7 +1,7 @@
 class Person {
-    constructor(name, age) {
+    constructor(name, gender) {
         this.name = name;
-        this.age = age;
+        this.gender = gender;
     }
 }
 
@@ -15,7 +15,7 @@ class Apartment {
     showResidents(apartmentIndex) {
         console.log(`Residents in Apartment ${apartmentIndex + 1}:`);
         for (const resident of this.residents) {
-            console.log(`Name: ${resident.name}, Age: ${resident.age}`);
+            console.log(`Name: ${resident.name}, Gender: ${resident.gender}`);
         }
         console.log('\n');
     }
@@ -37,9 +37,9 @@ class House {
     }
 }
 
-const person1 = new Person('John', 22);
-const person2 = new Person('Anna', 31);
-const person3 = new Person('Michael', 27);
+const person1 = new Person('John', 'Male');
+const person2 = new Person('Anna', 'Female');
+const person3 = new Person('Michael', 'Male');
 
 const apartment1 = new Apartment();
 const apartment2 = new Apartment();
