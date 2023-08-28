@@ -6,8 +6,48 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title></title>
+    <style>
+        .smiley {
+            font-size: 30px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+        .results {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            margin-top: 20px;
+        }
+        .result-item {
+            text-align: center;
+            margin: 0 10px;
+        }
+    </style>
 </head>
 <body>
+<div class="results">
+    <div class="result-item">
+        <div class="smiley" onclick="vote(0)">😃</div>
+        <div id="votes0">0</div>
+    </div>
+    <div class="result-item">
+        <div class="smiley" onclick="vote(1)">😊</div>
+        <div id="votes1">0</div>
+    </div>
+    <div class="result-item">
+        <div class="smiley" onclick="vote(2)">😐</div>
+        <div id="votes2">0</div>
+    </div>
+    <div class="result-item">
+        <div class="smiley" onclick="vote(3)">😕</div>
+        <div id="votes3">0</div>
+    </div>
+    <div class="result-item">
+        <div class="smiley" onclick="vote(4)">😞</div>
+        <div id="votes4">0</div>
+    </div>
+</div>
+
 <script src="task%2327.js"></script>
 </body>
 </html>
