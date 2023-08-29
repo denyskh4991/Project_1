@@ -1,16 +1,19 @@
-const voteCounts = [0, 0, 0, 0, 0];
+const smileys = document.querySelectorAll('.smiley');
+const voteCounts = new Array(smileys.length).fill(0);
+
+const results = document.getElementById('results');
+
+results.addEventListener('click', function(event) {
+    if (event.target.classList.contains('smiley')) {
+        const index = parseInt(event.target.getAttribute('data-index'));
+        voteCounts[index]++;
+        updateResults();
+    }
+});
 
 function updateResults() {
-    for (let i = 0; i < voteCounts.length; i++) {
-        const voteCount = voteCounts[i];
-        const voteCountElement = document.getElementById(`votes${i}`);
-        voteCountElement.textContent = voteCount;
-    }
+    const voteElements = document.querySelectorAll('.votes');
+    voteElements.forEach((element, index) => {
+        element.textContent = voteCounts[index];
+    });
 }
-
-function vote(index) {
-    voteCounts[index]++;
-    updateResults();
-}
-
-updateResults();
