@@ -10,13 +10,35 @@ function displayData() {
         const fieldName = form.elements[i].name;
         const fieldValue = form.elements[i].value;
 
-        if (fieldName && fieldValue) {
+        if (fieldName !== "gender" && fieldName !== "languages[]" && fieldName && fieldValue) {
             const row = table.insertRow();
             const cell1 = row.insertCell(0);
             const cell2 = row.insertCell(1);
             cell1.textContent = fieldName;
             cell2.textContent = fieldValue;
         }
+    }
+
+    const genderElements = form.querySelectorAll('input[name="gender"]');
+    for (const element of genderElements) {
+        if (element.checked) {
+            const row = table.insertRow();
+            const cell1 = row.insertCell(0);
+            const cell2 = row.insertCell(1);
+            cell1.textContent = "Стать";
+            cell2.textContent = element.value;
+            break;
+        }
+    }
+
+    const languagesElements = form.querySelectorAll('input[name="languages[]"]:checked');
+    if (languagesElements.length > 0) {
+        const languages = Array.from(languagesElements).map(element => element.value);
+        const row = table.insertRow();
+        const cell1 = row.insertCell(0);
+        const cell2 = row.insertCell(1);
+        cell1.textContent = "Мови, якими володієте";
+        cell2.textContent = languages.join(", ");
     }
 
     form.style.display = "none"; // Приховати форму
