@@ -9,7 +9,7 @@
 </head>
 <body>
 <h1>Форма реєстрації</h1>
-<form id="registrationForm">
+<form id="registrationForm" onsubmit="displayData(event)">
     <label for="firstName">Ім'я:</label>
     <input type="text" id="firstName" name="firstName" required><br><br>
 
@@ -39,14 +39,14 @@
     <textarea id="address" name="address" rows="4" cols="50"></textarea><br><br>
 
     <label>Мови, якими володієте:</label><br>
-    <input type="checkbox" id="language1" name="languages[]" value="Англійська">
+    <input type="checkbox" id="language1" name="languages" value="Англійська">
     <label for="language1">Англійська</label><br>
-    <input type="checkbox" id="language2" name="languages[]" value="Французька">
+    <input type="checkbox" id="language2" name="languages" value="Французька">
     <label for="language2">Французька</label><br>
-    <input type="checkbox" id="language3" name="languages[]" value="Іспанська">
+    <input type="checkbox" id="language3" name="languages" value="Іспанська">
     <label for="language3">Іспанська</label><br><br>
 
-    <input type="button" value="Зберегти" onclick="displayData()">
+    <input type="submit" value="Зберегти">
 </form>
 
 <div id="dataTable" style="display: none;">
@@ -56,17 +56,8 @@
             <th>Поле</th>
             <th>Значення</th>
         </tr>
-        <tr>
-            <td>Стать</td>
-            <td id="genderOutput"></td>
-        </tr>
-        <tr>
-            <td>Мови, якими володієте</td>
-            <td id="languagesOutput"></td>
-        </tr>
     </table>
 </div>
-
 <script src="task%2329.js"></script>
 </body>
 </html>
