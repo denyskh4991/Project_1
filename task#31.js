@@ -3,7 +3,8 @@ const productList = document.getElementById("product-list");
 const productInfo = document.getElementById("product-info");
 const myOrdersButton = document.getElementById("my-orders-button");
 
-// Обробка кліків на посиланнях категорій
+let currentCategory = null;
+
 const categoryLinks = document.querySelectorAll("#category-list a");
 categoryLinks.forEach((link) => {
     link.addEventListener("click", (event) => {
@@ -121,10 +122,14 @@ function showCategories() {
     productInfo.innerHTML = "";
 }
 
-// Додайте цю функцію, яка відображає замовлення користувача
+myOrdersButton.addEventListener("click", () => {
+    showMyOrders();
+});
+
 function showMyOrders() {
-    productList.innerHTML = ""; // Очистити вміст замовлень
-    productInfo.innerHTML = ""; // Очистити інформацію про товар
+    productList.innerHTML = "";
+    productInfo.innerHTML = "";
+    categoryList.style.display = "none";
 
     // Отримати збережені замовлення з localStorage і відобразити їх
     const savedOrders = JSON.parse(localStorage.getItem("orders")) || [];
@@ -139,7 +144,8 @@ function showMyOrders() {
         <p>Замовлення #${index + 1}</p>
         <p>Дата: ${order.date}</p>
         <p>Сума: ${order.totalPrice}$</p>
-        <button class="expand-order-button">Розгорнути</button>
+        <button class="expand-order-button" id="expand-order-${index}">Розгорнути</button>
+        <div class="order-details" id="order-details-${index}" style="display: none;"></div>
       `;
 
             const expandOrderButton = orderItem.querySelector(".expand-order-button");
@@ -154,34 +160,37 @@ myOrdersButton.addEventListener("click", () => {
     showMyOrders();
 });
 
-// Додайте цю функцію, яка відображає деталі конкретного замовлення
 function showOrderDetails(order, index) {
-    productList.innerHTML = ""; // Очистити вміст замовлень
-    productInfo.innerHTML = ""; // Очистити інформацію про товар
+    const orderDetails = document.getElementById(`order-details-${index}`);
+    if (orderDetails.style.display === "none") {
+        orderDetails.style.display = "block";
+        orderDetails.innerHTML = `
+      <h2>Деталі замовлення #${index + 1}</h2>
+      <p>Дата: ${order.date}</p>
+      <p>Сума: ${order.totalPrice}$</p>
+      <p>Покупець: ${order.customerName}</p>
+      <p>Місто: ${order.city}</p>
+      <p>Склад Нової пошти: ${order.deliveryPoint}</p>
+      <p>Спосіб оплати: ${order.paymentMethod}</p>
+      <p>Кількість продукції: ${order.quantity}</p>
+      <p>Коментар: ${order.comment}</p>
+      <!-- Додайте відображення інших додаткових полів, які ви зберегли -->
+      <button id="delete-order-button-${index}">Видалити замовлення</button>
+    `;
 
-    const orderDetails = document.createElement("div");
-    orderDetails.classList.add("order-details");
-    orderDetails.innerHTML = `
-    <h2>Деталі замовлення #${index + 1}</h2>
-    <p>Дата: ${order.date}</p>
-    <p>Сума: ${order.totalPrice}$</p>
-    <!-- Додайте інші деталі замовлення, які вам потрібні -->
-    <button id="delete-order-button">Видалити замовлення</button>
-  `;
-
-    const deleteOrderButton = orderDetails.getElementById("delete-order-button");
-    deleteOrderButton.addEventListener("click", () => {
-        // Видалити замовлення зі збережених та знову відобразити список замовлень
-        const savedOrders = JSON.parse(localStorage.getItem("orders")) || [];
-        savedOrders.splice(index, 1);
-        localStorage.setItem("orders", JSON.stringify(savedOrders));
-        showMyOrders();
-    });
-
-    productList.appendChild(orderDetails);
+        const deleteOrderButton = orderDetails.querySelector(`#delete-order-button-${index}`);
+        deleteOrderButton.addEventListener("click", () => {
+            // Видалити замовлення зі збережених та знову відобразити список замовлень
+            const savedOrders = JSON.parse(localStorage.getItem("orders")) || [];
+            savedOrders.splice(index, 1);
+            localStorage.setItem("orders", JSON.stringify(savedOrders));
+            showMyOrders();
+        });
+    } else {
+        orderDetails.style.display = "none";
+    }
 }
 
-// Додайте цю функцію для збереження замовлення в localStorage
 function saveOrder(product, customerName, city, deliveryPoint, paymentMethod, quantity, comment) {
     const date = new Date().toLocaleDateString();
     const totalPrice = product.price * quantity;
