@@ -1,6 +1,20 @@
 const categoryList = document.getElementById("category-list");
 const productList = document.getElementById("product-list");
 const productInfo = document.getElementById("product-info");
+const myOrdersButton = document.getElementById("my-orders-button");
+
+// Обробка кліків на посиланнях категорій
+const categoryLinks = document.querySelectorAll("#category-list a");
+categoryLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+        event.preventDefault(); // Запобігаємо стандартному переходу
+        const selectedCategory = link.getAttribute("data-category");
+        if (selectedCategory) {
+            showProducts(selectedCategory);
+            productInfo.innerHTML = "";
+        }
+    });
+});
 
 const categories = {
     electronics: [
@@ -17,7 +31,6 @@ const categories = {
     ],
 };
 
-// Функція для відображення товарів вибраної категорії
 function showProducts(category) {
     productList.innerHTML = "";
     categories[category].forEach((product, index) => {
@@ -29,7 +42,6 @@ function showProducts(category) {
     });
 }
 
-// Функція для відображення інформації про товар
 function showProductInfo(category, index) {
     const selectedProduct = categories[category][index];
     productInfo.innerHTML = `
@@ -46,14 +58,13 @@ function showProductInfo(category, index) {
           <option value="Київ">Київ</option>
           <option value="Львів">Львів</option>
           <option value="Одеса">Одеса</option>
-          <!-- Додайте інші міста за потребою -->
         </select><br><br>
         <label for="delivery-point">Склад Нової пошти:</label>
         <input type="text" id="delivery-point" required><br><br>
         <label for="payment-method">Спосіб оплати:</label>
-        <input type="radio" id="cash-on-delivery" name="payment-method" value="Післяплата" required>
+        <input type="radio" id="cash-on-delivery" name="payment-method" value="cash-on-delivery" required>
         <label for="cash-on-delivery">Післяплата</label>
-        <input type="radio" id="credit-card" name="payment-method" value="Банківська картка" required>
+        <input type="radio" id="credit-card" name="payment-method" value="credit-card" required>
         <label for="credit-card">Банківська картка</label><br><br>
         <label for="quantity">Кількість продукції:</label>
         <input type="number" id="quantity" required><br><br>
@@ -85,51 +96,6 @@ function showProductInfo(category, index) {
         return false;
     }
 
-    // Функція для відображення інформації про замовлення у вигляді таблиці
-    function showOrderInfo(selectedProduct, customerName, city, deliveryPoint, paymentMethod, quantity, comment) {
-        const orderTable = document.createElement("table");
-        orderTable.innerHTML = `
-      <tr>
-        <th>Товар</th>
-        <th>Ціна</th>
-      </tr>
-      <tr>
-        <td>${selectedProduct.name}</td>
-        <td>${selectedProduct.price}$</td>
-      </tr>
-      <tr>
-        <th>Інформація про доставку</th>
-        <th></th>
-      </tr>
-      <tr>
-        <td>ПІБ покупця:</td>
-        <td>${customerName}</td>
-      </tr>
-      <tr>
-        <td>Місто:</td>
-        <td>${city}</td>
-      </tr>
-      <tr>
-        <td>Склад Нової пошти:</td>
-        <td>${deliveryPoint}</td>
-      </tr>
-      <tr>
-        <td>Спосіб оплати:</td>
-        <td>${paymentMethod}</td>
-      </tr>
-      <tr>
-        <td>Кількість:</td>
-        <td>${quantity}</td>
-      </tr>
-      <tr>
-        <td>Коментар:</td>
-        <td>${comment}</td>
-      </tr>
-    `;
-        productInfo.innerHTML = "";
-        productInfo.appendChild(orderTable);
-    }
-
     confirmOrderButton.addEventListener("click", (event) => {
         event.preventDefault();
         const customerName = document.getElementById("customer-name").value;
@@ -140,24 +106,99 @@ function showProductInfo(category, index) {
         const comment = document.getElementById("comment").value;
 
         if (validateOrder()) {
-            showOrderInfo(selectedProduct, customerName, city, deliveryPoint, paymentMethod.value, quantity, comment);
+            alert("Замовлення прийнято!");
+            showCategories();
+            orderForm.style.display = "none";
+            saveOrder(selectedProduct, customerName, city, deliveryPoint, paymentMethod.value, quantity, comment);
         } else {
             alert("Будь ласка, заповніть всі обов'язкові поля.");
         }
     });
 }
 
-// Функція для відображення списку категорій
 function showCategories() {
     productList.innerHTML = "";
     productInfo.innerHTML = "";
 }
 
-// Обробник подій для вибору категорії
-categoryList.addEventListener("click", (event) => {
-    const selectedCategory = event.target.getAttribute("data-category");
-    if (selectedCategory) {
-        showProducts(selectedCategory);
-        productInfo.innerHTML = "";
+// Додайте цю функцію, яка відображає замовлення користувача
+function showMyOrders() {
+    productList.innerHTML = ""; // Очистити вміст замовлень
+    productInfo.innerHTML = ""; // Очистити інформацію про товар
+
+    // Отримати збережені замовлення з localStorage і відобразити їх
+    const savedOrders = JSON.parse(localStorage.getItem("orders")) || [];
+
+    if (savedOrders.length === 0) {
+        productList.innerHTML = "У вас немає замовлень.";
+    } else {
+        savedOrders.forEach((order, index) => {
+            const orderItem = document.createElement("div");
+            orderItem.classList.add("order-item");
+            orderItem.innerHTML = `
+        <p>Замовлення #${index + 1}</p>
+        <p>Дата: ${order.date}</p>
+        <p>Сума: ${order.totalPrice}$</p>
+        <button class="expand-order-button">Розгорнути</button>
+      `;
+
+            const expandOrderButton = orderItem.querySelector(".expand-order-button");
+            expandOrderButton.addEventListener("click", () => showOrderDetails(order, index));
+
+            productList.appendChild(orderItem);
+        });
     }
+}
+
+myOrdersButton.addEventListener("click", () => {
+    showMyOrders();
 });
+
+// Додайте цю функцію, яка відображає деталі конкретного замовлення
+function showOrderDetails(order, index) {
+    productList.innerHTML = ""; // Очистити вміст замовлень
+    productInfo.innerHTML = ""; // Очистити інформацію про товар
+
+    const orderDetails = document.createElement("div");
+    orderDetails.classList.add("order-details");
+    orderDetails.innerHTML = `
+    <h2>Деталі замовлення #${index + 1}</h2>
+    <p>Дата: ${order.date}</p>
+    <p>Сума: ${order.totalPrice}$</p>
+    <!-- Додайте інші деталі замовлення, які вам потрібні -->
+    <button id="delete-order-button">Видалити замовлення</button>
+  `;
+
+    const deleteOrderButton = orderDetails.getElementById("delete-order-button");
+    deleteOrderButton.addEventListener("click", () => {
+        // Видалити замовлення зі збережених та знову відобразити список замовлень
+        const savedOrders = JSON.parse(localStorage.getItem("orders")) || [];
+        savedOrders.splice(index, 1);
+        localStorage.setItem("orders", JSON.stringify(savedOrders));
+        showMyOrders();
+    });
+
+    productList.appendChild(orderDetails);
+}
+
+// Додайте цю функцію для збереження замовлення в localStorage
+function saveOrder(product, customerName, city, deliveryPoint, paymentMethod, quantity, comment) {
+    const date = new Date().toLocaleDateString();
+    const totalPrice = product.price * quantity;
+
+    const order = {
+        date,
+        totalPrice,
+        product,
+        customerName,
+        city,
+        deliveryPoint,
+        paymentMethod,
+        quantity,
+        comment,
+    };
+
+    const savedOrders = JSON.parse(localStorage.getItem("orders")) || [];
+    savedOrders.push(order);
+    localStorage.setItem("orders", JSON.stringify(savedOrders));
+}
