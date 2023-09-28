@@ -3,14 +3,14 @@ const { readFile } = require('node:fs');
 const { extname } = require('node:path');
 
 const server = createServer((req, res) => {
-    let filePath = req.url === '/' ? 'index.html' : req.url;
+    let filePath = req.url === '/' ? './index.html' : `.${req.url}`;
     const ext = extname(filePath);
     let contentType = 'text/html';
 
     if (req.url === '/about') {
-        filePath = 'about.html';
+        filePath = './about.html';
     } else if (req.url === '/contact') {
-        filePath = 'contact.html';
+        filePath = './contact.html';
     }
 
     switch (ext) {
@@ -20,12 +20,18 @@ const server = createServer((req, res) => {
         case '.css':
             contentType = 'text/css';
             break;
+        case '.jpg':
+            contentType = 'image/jpeg';
+            break;
+        case '.png':
+            contentType = 'image/png';
+            break;
     }
 
     readFile(filePath, (err, content) => {
         if (err) {
             if (err.code === 'ENOENT') {
-                readFile('404.html', (err, notFoundPage) => {
+                readFile('./404.html', (err, notFoundPage) => {
                     res.writeHead(404, { 'Content-Type': 'text/html' });
                     res.end(notFoundPage, 'utf8');
                 });
