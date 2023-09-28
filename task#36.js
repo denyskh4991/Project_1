@@ -1,15 +1,19 @@
 document.addEventListener('DOMContentLoaded', function() {
     const postIdInput = document.getElementById('postId');
-    const searchButton = document.getElementById('searchButton');
+    const searchForm = document.getElementById('searchForm');
     const postContainer = document.getElementById('postContainer');
     const postDetails = document.getElementById('postDetails');
     const getCommentsButton = document.getElementById('getCommentsButton');
     const comments = document.getElementById('comments');
 
-    searchButton.addEventListener('click', function() {
+    searchForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
         const postId = postIdInput.value;
 
         if (postId >= 1 && postId <= 100) {
+            comments.innerHTML = '';
+
             fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)
                 .then(response => {
                     if (!response.ok) {

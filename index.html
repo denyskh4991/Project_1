@@ -9,16 +9,18 @@
 </head>
 <body>
 <h1>Пошук посту за ідентифікатором</h1>
-<label for="postId">Введіть ідентифікатор посту (1-100):</label>
-<input type="number" id="postId" min="1" max="100">
-<button id="searchButton">Пошук</button>
+<form id="searchForm">
+    <label for="postId">Введіть ідентифікатор посту (1-100):</label>
+    <input type="number" id="postId" min="1" max="100">
+    <button type="submit" id="searchButton">Пошук</button>
+</form>
 
 <div id="postContainer" style="display: none;">
     <h2>Знайдений пост:</h2>
     <div id="postDetails"></div>
     <button id="getCommentsButton">Отримати коментарі</button>
     <div id="comments"></div>
-</div>
-<script src="task%2336.js"></script>
+
+</div><script src="task%2336.js"></script>
 </body>
 </html>
