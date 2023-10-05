@@ -11,7 +11,7 @@
 <h1>Пошук посту за ідентифікатором</h1>
 <form id="searchForm">
     <label for="postId">Введіть ідентифікатор посту (1-100):</label>
-    <input type="number" id="postId" min="1" max="100">
+    <input type="number" id="postId" name="postId" min="1" max="100" required>
     <button type="submit" id="searchButton">Пошук</button>
 </form>
 
@@ -20,6 +20,7 @@
     <div id="postDetails"></div>
     <button id="getCommentsButton">Отримати коментарі</button>
     <div id="comments"></div>
+</div>
 
 </div><script src="task%2336.js"></script>
 </body>

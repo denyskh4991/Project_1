@@ -1,20 +1,21 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const postIdInput = document.getElementById('postId');
     const searchForm = document.getElementById('searchForm');
     const postContainer = document.getElementById('postContainer');
     const postDetails = document.getElementById('postDetails');
     const getCommentsButton = document.getElementById('getCommentsButton');
     const comments = document.getElementById('comments');
+    let currentPostId;
 
     searchForm.addEventListener('submit', function(event) {
         event.preventDefault();
 
-        const postId = postIdInput.value;
+        if (this.checkValidity()) {
+            currentPostId = this.elements.postId.value;
 
-        if (postId >= 1 && postId <= 100) {
+            // Очищення коментарів при новому запиті
             comments.innerHTML = '';
 
-            fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)
+            fetch(`https://jsonplaceholder.typicode.com/posts/${currentPostId}`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Помилка при отриманні поста');
@@ -32,14 +33,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     console.error(error);
                     alert('Сталася помилка. Спробуйте ще раз.');
                 });
-        } else {
-            alert('Введіть ідентифікатор від 1 до 100');
         }
     });
 
     getCommentsButton.addEventListener('click', function() {
-        const postId = postIdInput.value;
-        fetch(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`)
+        fetch(`https://jsonplaceholder.typicode.com/posts/${currentPostId}/comments`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Помилка при отриманні коментарів');
