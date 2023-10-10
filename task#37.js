@@ -3,8 +3,8 @@ const updatedProperties = { type: "" };
 
 Object.assign(car, updatedProperties);
 
-const electro = { ...car, type: "electro", maxDistance: 0 };
-const common = { ...car, type: "common", gas: "", gearBox: "" };
+const electro = Object.assign({}, car, { type: "electro", maxDistance: 0 });
+const common = Object.assign({}, car, { type: "common", gas: "", gearBox: "" });
 
 const models = {
     tesla: { brand: "Tesla", model: "S Plaid", color: "", type: "electro", maxDistance: 850 },
@@ -15,9 +15,7 @@ const models = {
 
 for (const modelName in models) {
     const model = models[modelName];
-    console.log(`${modelName}:`);
-    Object.entries(model).forEach(([key, value]) => {
-        console.log(`${key}: "${value}"`);
-    });
-    console.log();
+    console.log(modelName + ":");
+    console.log(Object.entries(model).map(([key, value]) => `${key}: "${value}"`).join(", "));
+    console.log(""); // Пустий рядок-розподільник
 }
