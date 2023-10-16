@@ -1,0 +1,20 @@
+.app {
+  display: flex;
+  flex-direction: row;
+}
+
+.header {
+  background-color: blue;
+  color: yellow;
+  padding: 10px;
+}
+
+.aside {
+  background-color: green;
+  padding: 10px;
+}
+
+.content {
+  flex: 1;
+  padding: 10px;
+}
