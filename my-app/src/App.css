@@ -1,0 +1,23 @@
+.smiley-list {
+  list-style: none;
+  padding: 0;
+}
+
+.smiley-item {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+}
+
+.smiley-icon {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.vote-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
